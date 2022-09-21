@@ -50,7 +50,7 @@ Firebase Firestore (NoSQL)
 ### Локально
 Для локального запуска приложения необходимо следующее:
 - создать в корневой папке проекта файл `.env.local` с данными для подключения Firebase API 
-> - данные могу предоставить на почту, так как выкладывать их в публичный репозиторий нельзя по соображениям безопасности (моя почта: `rsheglovskiy@mail.ru`)
+> - содержимое `.env.local` моге предоставить на почту, так как выкладывать их в публичный репозиторий нельзя по соображениям безопасности (моя почта: `rsheglovskiy@mail.ru`)
 > - также можно:
 > > - [зарегистрировать новый проект Firebase и добавить в него WEB приложение](https://firebase.google.com/docs/web/setup?authuser=0&hl=en) 
 > > - настроить использование [Firebase Authentication](https://firebase.google.com/docs/auth/web/start?hl=en&authuser=0) и [Firebase Firestore](https://firebase.google.com/docs/firestore/quickstart?hl=en&authuser=0)
