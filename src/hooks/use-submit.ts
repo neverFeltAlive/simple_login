@@ -22,7 +22,7 @@ export function useSubmit(){
         const auth = getAuth();
 
         /**
-         *  Signs in / Signs up user
+         *  Asynchronously signs in / signs up user
          *  @param {string} email - user email
          *  @param {string} password - user password
          *  @return {string} - Server error message
@@ -32,7 +32,8 @@ export function useSubmit(){
                 "auth/weak-password": "Пароль слишком слабый",
                 "auth/invalid-email": "Email некорректный",
                 "auth/user-not-found": "Пользователь не найден",
-                "auth/email-already-in-use": "Email занят"
+                "auth/email-already-in-use": "Email занят",
+                "auth/wrong-password": "Неверный логин или парль",
             };
             let errorMessage = null;
 

@@ -1,22 +1,13 @@
 import {useAppDispatch, useAppSelector} from "./redux-hooks";
 import {removeUser, selectUser, setUser} from "../store/slices/userSlice";
 import {getAuth, onAuthStateChanged, signOut, Unsubscribe} from "firebase/auth";
-import {useEffect} from "react";
-import {DEBUG} from "../constants";
+import {DEBUG} from "../utils/constants";
+import {cacheObserver, useObserverCache} from "./use-observer-cache";
 
-
-const cacheListener = (function () {
-    let listener: null | Unsubscribe = null;
-
-    /**
-     * Cache firebase auth object listener (to prevent setting multiple instances)
-     */
-    return (fn: () => Unsubscribe) => {
-        if (!listener){
-            listener = fn();
-        }
-    }
-})();
+/**
+ * Caches firebase auth object event listener
+ */
+export const cache = cacheObserver<Unsubscribe>();
 
 /**
  * Gets user values from Redux store
@@ -26,7 +17,7 @@ export function useAuth(){
     const user = useAppSelector(selectUser);
     const dispatch = useAppDispatch();
 
-    const addListener = (): Unsubscribe => {
+    const addObserver = (): Unsubscribe => {
         const auth = getAuth();
         return onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -39,11 +30,8 @@ export function useAuth(){
                 dispatch(removeUser());
             }
         });
-    }
-
-    useEffect(() => {
-        cacheListener(addListener);
-    }, []);
+    };
+    useObserverCache<Unsubscribe>(cache, addObserver);
 
     return {
         isAuth: !!user.token,
@@ -57,8 +45,8 @@ export function useAuth(){
 export function logOut(){
     const auth = getAuth();
     signOut(auth).then(() => {
-        if (DEBUG) console.log("Logged out");
+        if (DEBUG) console.info("Logged out");
     }).catch((error) => {
-        if (DEBUG) console.log(error);
+        if (DEBUG) console.error(error);
     });
 }

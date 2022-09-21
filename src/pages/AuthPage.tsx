@@ -1,17 +1,17 @@
 import Form from "../components/Form";
 import {Button, Container} from "@mui/material";
-import {FC} from "react";
+import React from "react";
 import {signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
 import {useSubmit} from "../hooks/use-submit";
 import {Navigate, useNavigate} from "react-router-dom";
 import {PageLinks} from "../App";
 import {useAuth} from "../hooks/use-auth";
 
-interface AuthProps{
+type AuthProps = {
     isLogin: boolean
 }
 
-const AuthPage: FC<AuthProps> = ({isLogin}) => {
+const AuthPage = ({isLogin}: AuthProps): JSX.Element => {
     const navigate = useNavigate();
     const {handleSubmit} = useSubmit();
 

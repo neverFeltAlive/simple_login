@@ -1,11 +1,13 @@
 import {alpha, AppBar, Box, Button, InputBase, styled, Toolbar, Typography} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
-import React, {FC} from "react";
-import {logOut} from "../hooks/use-auth";
+import React from "react";
+import {logOut} from "../../hooks/use-auth";
 import {useNavigate} from "react-router-dom";
+import {useSearch} from "../../hooks/use-search";
+
 
 //region Styles
-const Search = styled('div')(({ theme }) => ({
+const SearchContainer = styled('div')(({ theme }) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -44,7 +46,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 //endregion
 
-interface HeaderProps {
+type HeaderProps = {
     title: string
 }
 
@@ -53,8 +55,17 @@ interface HeaderProps {
  * @param props
  * @constructor
  */
-const Header: FC<HeaderProps> = (props) => {
+const Header = (props: HeaderProps): JSX.Element => {
     const navigate = useNavigate();
+    const {searchString, setSearchString} = useSearch();
+
+    /**
+     * Handles search input change event by applying its value to the context
+     * @param event
+     */
+    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (event) => {
+        if (setSearchString) setSearchString(event.target.value);
+    }
 
     /**
      * Handles click event of log out button
@@ -72,15 +83,19 @@ const Header: FC<HeaderProps> = (props) => {
                     <Typography variant="h6" component="div" sx={{flex: 0.6}}>
                         {props.title}
                     </Typography>
-                    <Search sx={{flex: 0.3}}>
+                    <SearchContainer sx={{flex: 0.3}}>
                         <SearchIconWrapper>
                             <SearchIcon />
                         </SearchIconWrapper>
                         <StyledInputBase
                             placeholder="Поиск…"
-                            inputProps={{ 'aria-label': 'search' }}
+                            onChange={handleChange}
+                            value={searchString}
+                            inputProps={{
+                                'aria-label': 'search',
+                            }}
                         />
-                    </Search>
+                    </SearchContainer>
                     <Button color="inherit" sx={{flex: 0.1}} onClick={handleClick}>Logout</Button>
                 </Toolbar>
             </AppBar>

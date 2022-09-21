@@ -1,25 +1,25 @@
-import React, {FC, useState} from 'react';
+import React, {useState} from 'react';
 import {Alert, AlertTitle, Button, Container, TextField} from "@mui/material";
 
 //region TypeScript types
 export type SubmitHandler = {(email: string, password: string): Promise<{ errorMessage: null | string }>};
 
-interface FormProps {
-    handleSubmit: SubmitHandler,
-    buttonText: string,
-    isReg?: boolean,
+type FormProps = {
+    handleSubmit: SubmitHandler
+    buttonText: string
+    isReg?: boolean
 }
 
-interface Errors {
-    email: null | string,
-    password: null | string,
-    passwordRepeat: null | string,
+type Errors = {
+    email: null | string
+    password: null | string
+    passwordRepeat: null | string
 }
 
-interface AuthFormValues{
-    email: string,
-    password: string,
-    passwordRepeat: string,
+type AuthFormValues ={
+    email: string
+    password: string
+    passwordRepeat: string
 }
 //endregion
 
@@ -43,7 +43,7 @@ const initialErrors: Errors = {
  * @param isReg - boolean value to define if the form is used for sign up
  * @constructor
  */
-const Form: FC<FormProps> = ({handleSubmit, buttonText, isReg = false}) => {
+const Form = ({handleSubmit, buttonText, isReg = false}: FormProps): JSX.Element => {
     const [values, setValues] = useState<AuthFormValues>(initialValues)
     const [error, setError] = useState<null | string>(null);
     const [errors, setErrors] = useState<Errors>(initialErrors);
