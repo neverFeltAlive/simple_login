@@ -54,6 +54,6 @@ Firebase Firestore (NoSQL)
 > - также можно:
 >   - [зарегистрировать новый проект Firebase и добавить в него WEB приложение](https://firebase.google.com/docs/web/setup?authuser=0&hl=en) 
 >   - настроить использование [Firebase Authentication](https://firebase.google.com/docs/auth/web/start?hl=en&authuser=0) и [Firebase Firestore](https://firebase.google.com/docs/firestore/quickstart?hl=en&authuser=0)
-> > - добавить необходимые переменные в `.env.local` 
+>   - добавить необходимые переменные в `.env.local` 
 
 2. запустить проект командой `npm start`
