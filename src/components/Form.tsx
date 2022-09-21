@@ -103,7 +103,7 @@ const Form = ({handleSubmit, buttonText, isReg = false}: FormProps): JSX.Element
      */
     const handleFocus: React.FocusEventHandler<HTMLInputElement> = (event) => {
         setErrors(prevState => {
-            return {...prevState, [event.target.type]: null}
+            return {...prevState, [event.target.name]: null}
         })
     }
 
