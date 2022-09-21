@@ -1,46 +1,48 @@
-# Getting Started with Create React App
+# Тестовое приложение авторизации пользователя
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Доступно по [cсылке](https://simple-login-21cb5.web.app/)
 
-## Available Scripts
+## Описание проекта
 
-In the project directory, you can run:
+Данное приложение представляет из себя одностраничное React приложение реализующее следующих функционал:
+- регистрация пользователя
+- авторизация пользователя
+- добавление / удаление данных пользователя
+- отображение данных пользователя
+- отображение данных пользователя соответствующих поисковому запросу
 
-### `npm start`
+### Использованные технологии:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- `node`: 16.15.0
+- `React`: 18.2.0
+- `TypeScript`: 4.8.3
+- `Redux`: 16.15.0
+- `React Router`: 8.0.2
+- `Firebase`: 9.10.0
+- `Material UI`: 5.10.6
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Подробнее о реализации функционала
 
-### `npm test`
+### `Регистрация / Авторизация`
+Для реализации используется Firebase Authentication API (email провайдер). На сайте можно авторизоваться / 
+зарегистрироваться использую email и пароль. Для удобства все манипуляции над данными пользователя производятся
+при помощи библиотеки Redux
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### `Пользовательские данные`
+В приложении авторизованный пользователь может добавлять / удалять контакты. В качестве базы данных используется
+Firebase Firestore (NoSQL)
 
-### `npm run build`
+### `Другое`
+Также в приложении используется React Context для управления некоторыми состояниями
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Использование приложения
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Развернутое приложение
+Приложение развернуто на облачном сервере Firebase со следующим доменом: [cсылка на сайт](https://simple-login-21cb5.web.app/)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Локально
+Для локального запуска приложения необходимо следующее:
+- создать в корневой папке проекта файл `.env.local` с данными для подключения Firebase API (данные могу 
+предоставить на почту, так как выкладывать их в публичный репозиторий нельзя по соображениям безопасности 
+(пишите сюда: `rsheglovskiy@mail.ru`), или можно зарегистрировать новый проект Firebase и настроить использование Firebase Authentication и Firebase Firestore)
+- запустить проект командой `npm start`
