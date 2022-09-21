@@ -116,7 +116,7 @@ const Form = ({handleSubmit, buttonText, isReg = false}: FormProps): JSX.Element
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (event) => {
         event.preventDefault();
 
-        if (values.password && values.email && isReg === !!values.passwordRepeat){
+        if (values.password && values.email && isReg === !!values.passwordRepeat && !errors){
             const {errorMessage} = await handleSubmit(values.email, values.password);
 
             if (errorMessage){
