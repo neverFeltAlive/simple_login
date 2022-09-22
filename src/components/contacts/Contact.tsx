@@ -23,7 +23,7 @@ const Contact = (props: ContactProps): JSX.Element => {
     }
 
     return (
-        <Card sx={{ width: 250}}>
+        <Card sx={{ width: 250, height: 200}}>
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     {props.name}

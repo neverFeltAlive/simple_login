@@ -7,6 +7,8 @@ import {useModal} from "../../hooks/use-context";
 
 const FormContainer = styled(Box)(() => ({
     padding: "20px",
+    bgcolor: 'background.default',
+    color: 'text.primary',
 }))
 
 /**

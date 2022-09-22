@@ -18,10 +18,11 @@ const Overlay = styled(Box)(() => ({
     backgroundColor: "rgba(0, 0, 0, 0.6)"
 }));
 
-const ModalContainer = styled(Container)(() => ({
+const ModalContainer = styled(Container)(({theme}) => ({
     padding: "20px",
     position: "relative",
-    backgroundColor: "white"
+    backgroundColor: theme.palette.background.paper,
+    color: theme.palette.text.primary,
 }));
 //endregion
 

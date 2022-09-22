@@ -20,7 +20,7 @@ const HomePage = () => {
     return (
         <SearchProvider>
             <Header title="Контакты"/>
-            <>{isLoading && <LinearProgress color="inherit"/>}</>
+            <>{isLoading && <LinearProgress/>}</>
             <Contacts/>
             <Modal/>
         </SearchProvider>

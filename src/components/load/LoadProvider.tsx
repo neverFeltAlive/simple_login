@@ -1,4 +1,5 @@
 import React, {SetStateAction, useState} from 'react';
+import {ComponentDefaultProps} from "../../utils/constants";
 
 //region TypeScript types
 export enum LoadContexts{
@@ -11,8 +12,7 @@ type LoadContextType = {
     setIsLoading: null | React.Dispatch<SetStateAction<boolean>>
 }
 
-type LoadProviderProps = {
-    children: JSX.Element | JSX.Element[]
+type LoadProviderProps = ComponentDefaultProps & {
     context?: LoadContexts
 }
 //endregion

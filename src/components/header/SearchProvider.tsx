@@ -1,13 +1,10 @@
 import React, {SetStateAction, useState} from 'react';
+import {ComponentDefaultProps} from "../../utils/constants";
 
 //region TypeScript types
 type SearchContextType = {
     searchString: string
     setSearchString: null | React.Dispatch<SetStateAction<string>>
-}
-
-type SearchProviderProps = {
-    children: JSX.Element[]
 }
 //endregion
 
@@ -21,7 +18,7 @@ export const SearchContext = React.createContext<SearchContextType>({searchStrin
  * @param children
  * @constructor
  */
-const SearchProvider = ({children}: SearchProviderProps): JSX.Element => {
+const SearchProvider = ({children}: ComponentDefaultProps): JSX.Element => {
     const [searchString, setSearchString] = useState<string>('');
 
     return (

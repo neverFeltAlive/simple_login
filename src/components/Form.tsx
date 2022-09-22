@@ -148,7 +148,9 @@ const Form = ({handleSubmit: submitHandler, buttonText, isReg = false}: FormProp
             }
             <Container
                 sx={{
-                    minHeight: "30vh"
+                    minHeight: "30vh",
+                    bgcolor: 'background.default',
+                    color: 'text.primary',
                 }}
             >
                 <TextField

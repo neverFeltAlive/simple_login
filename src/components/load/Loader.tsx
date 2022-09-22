@@ -1,8 +1,9 @@
 import React from 'react';
 import {useLoad} from "../../hooks/use-context";
 import {Box, CircularProgress, styled} from "@mui/material";
+import {ComponentDefaultProps} from "../../utils/constants";
 
-const Overlay = styled(Box)(() => ({
+const Overlay = styled(Box)(({theme}) => ({
     position: "fixed",
     width: "100vw",
     height: "100vh",
@@ -12,14 +13,10 @@ const Overlay = styled(Box)(() => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(255, 255, 255, 1)"
+    backgroundColor: theme.palette.background.default,
 }));
 
-type LoaderProps = {
-    children: JSX.Element | JSX.Element[]
-}
-
-const Loader = ({children}: LoaderProps): JSX.Element => {
+const Loader = ({children}: ComponentDefaultProps): JSX.Element => {
     const {isLoading} = useLoad();
 
     return (

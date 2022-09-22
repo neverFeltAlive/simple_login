@@ -1,13 +1,10 @@
 import React, {SetStateAction, useState} from 'react';
+import {ComponentDefaultProps} from "../../utils/constants";
 
 //region TypeScript types
 type ModalContextType = {
     content: null | JSX.Element
     setContent: null | React.Dispatch<SetStateAction<null | JSX.Element>>
-}
-
-type ModalProviderProps = {
-    children: JSX.Element | JSX.Element[]
 }
 //endregion
 
@@ -21,7 +18,7 @@ export const ModalContext = React.createContext<ModalContextType>({content: null
  * @param children
  * @constructor
  */
-const ModalProvider = ({children}: ModalProviderProps): JSX.Element => {
+const ModalProvider = ({children}: ComponentDefaultProps): JSX.Element => {
     const [content, setContent] = useState<null | JSX.Element>(null);
 
     return (

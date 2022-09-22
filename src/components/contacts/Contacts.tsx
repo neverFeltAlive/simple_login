@@ -20,7 +20,7 @@ const Contacts = (): JSX.Element => {
 
     // Use search context to define which contacts to show
     useEffect(() => {
-        if (searchString === ""){
+        if (searchString === "") {
             setVisibleContacts(contacts);
         } else {
             const newCurrentContacts: ContactType[] = contacts?.filter((contact: ContactType) => {
@@ -39,7 +39,7 @@ const Contacts = (): JSX.Element => {
      * @param event
      */
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = (event) => {
-        if (setContent){
+        if (setContent) {
             setContent(<AddContact/>)
         }
     }
@@ -65,7 +65,7 @@ const Contacts = (): JSX.Element => {
     //region JSX Elements
     // Define contacts elements is any found
     let visibleContactsElements: JSX.Element | JSX.Element[] = <Typography variant="h6">Ничего не найдено</Typography>
-    if (visibleContacts && visibleContacts?.length > 0){
+    if (visibleContacts && visibleContacts?.length > 0) {
         visibleContactsElements = visibleContacts?.map((contact) => {
             return (
                 <Grid item key={contact.id}>
@@ -79,7 +79,14 @@ const Contacts = (): JSX.Element => {
     //endregion
 
     return (
-        <Container maxWidth="lg" sx={{p: "20px"}}>
+        <Container
+            maxWidth="lg"
+            sx={{
+                p: "20px",
+                bgcolor: 'background.default',
+                color: 'text.primary',
+            }}
+        >
             <>
                 {contacts ? (
                     <Grid container spacing={2} sx={{p: "20px"}}>
