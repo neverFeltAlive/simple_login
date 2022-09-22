@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import {Button, Card, CardActions, CardContent, Typography} from "@mui/material";
 
 type ContactProps = {
@@ -13,7 +13,6 @@ type ContactProps = {
  * @constructor
  */
 const Contact = (props: ContactProps): JSX.Element => {
-
     /**
      * Handles delete button click
      * @param event

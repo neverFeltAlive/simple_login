@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import Contact from "./Contact";
-import {Button, Container, Divider, Grid, Typography} from "@mui/material";
-import {useContacts, Contact as ContactType} from "../../hooks/use-contacts";
-import {useModal} from "../../hooks/use-modal";
+import {Box, Button, Container, Divider, Grid, LinearProgress, Typography} from "@mui/material";
+import {Contact as ContactType, useContacts} from "../../hooks/use-contacts";
+import {useLoad, useModal, useSearch} from "../../hooks/use-context";
 import AddContact from "./AddContact";
 import {DEBUG} from "../../utils/constants";
-import {useSearch} from "../../hooks/use-search";
+import {LoadContexts} from "../load/LoadProvider";
 
 /**
  * Component for displaying a grid of contacts
@@ -16,6 +16,7 @@ const Contacts = (): JSX.Element => {
     const [visibleContacts, setVisibleContacts] = useState<null | ContactType[]>(null);
     const {setContent} = useModal();
     const {searchString} = useSearch();
+    const {isLoading} = useLoad(LoadContexts.CONTACTS);
 
     // Use search context to define which contacts to show
     useEffect(() => {
@@ -61,7 +62,7 @@ const Contacts = (): JSX.Element => {
     }
     //endregion
 
-    //region Contacts Elements
+    //region JSX Elements
     // Define contacts elements is any found
     let visibleContactsElements: JSX.Element | JSX.Element[] = <Typography variant="h6">Ничего не найдено</Typography>
     if (visibleContacts && visibleContacts?.length > 0){
@@ -73,6 +74,8 @@ const Contacts = (): JSX.Element => {
             )
         });
     }
+
+    let noContacts = isLoading ? null : (<Typography variant="h6">У вас нет контактов</Typography>)
     //endregion
 
     return (
@@ -82,9 +85,7 @@ const Contacts = (): JSX.Element => {
                     <Grid container spacing={2} sx={{p: "20px"}}>
                         {visibleContactsElements}
                     </Grid>
-                ) : (
-                    <Typography variant="h6">У вас нет контактов</Typography>
-                )}
+                ) : noContacts}
             </>
             <Divider variant="middle" sx={{m: "20px"}}/>
             <Button variant="outlined" onClick={handleClick}>Добваить контакт</Button>

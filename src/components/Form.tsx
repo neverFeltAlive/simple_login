@@ -43,7 +43,7 @@ const initialErrors: Errors = {
  * @param isReg - boolean value to define if the form is used for sign up
  * @constructor
  */
-const Form = ({handleSubmit, buttonText, isReg = false}: FormProps): JSX.Element => {
+const Form = ({handleSubmit: submitHandler, buttonText, isReg = false}: FormProps): JSX.Element => {
     const [values, setValues] = useState<AuthFormValues>(initialValues)
     const [error, setError] = useState<null | string>(null);
     const [errors, setErrors] = useState<Errors>(initialErrors);
@@ -67,6 +67,7 @@ const Form = ({handleSubmit, buttonText, isReg = false}: FormProps): JSX.Element
         }
     }
 
+    //region Event Handlers
     /**
      * Handles blur event of form inputs
      * Validates the input
@@ -113,11 +114,12 @@ const Form = ({handleSubmit, buttonText, isReg = false}: FormProps): JSX.Element
      * Displays server error message if needed
      * @param event
      */
-    const handleClick: React.MouseEventHandler<HTMLButtonElement> = async (event) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
 
-        if (values.password && values.email && isReg === !!values.passwordRepeat && !errors){
-            const {errorMessage} = await handleSubmit(values.email, values.password);
+        const haveErrors = !!errors.passwordRepeat || !!errors.password || !!errors.email;
+        if (values.password && values.email && isReg === !!values.passwordRepeat && !haveErrors){
+            const {errorMessage} = await submitHandler(values.email, values.password);
 
             if (errorMessage){
                 setValues(initialValues);
@@ -125,9 +127,10 @@ const Form = ({handleSubmit, buttonText, isReg = false}: FormProps): JSX.Element
             }
         }
     }
+    //endregion
 
     return (
-        <form>
+        <form onSubmit={handleSubmit}>
             {error &&
                 (<Alert
                     severity="error"
@@ -204,7 +207,7 @@ const Form = ({handleSubmit, buttonText, isReg = false}: FormProps): JSX.Element
                     </>
                 )}
             </Container>
-            <Button variant="outlined" type="submit" onClick={handleClick}>{buttonText}</Button>
+            <Button variant="outlined" type="submit">{buttonText}</Button>
         </form>
     );
 };
