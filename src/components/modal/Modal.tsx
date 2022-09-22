@@ -1,5 +1,5 @@
 import React from 'react';
-import {useModal} from "../../hooks/use-modal";
+import {useModal} from "../../hooks/use-context";
 import ReactDOM from "react-dom";
 import {Box, Container, IconButton, styled} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";

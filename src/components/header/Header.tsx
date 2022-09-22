@@ -3,7 +3,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import React from "react";
 import {logOut} from "../../hooks/use-auth";
 import {useNavigate} from "react-router-dom";
-import {useSearch} from "../../hooks/use-search";
+import {useSearch} from "../../hooks/use-context";
 
 
 //region Styles

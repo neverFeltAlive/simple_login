@@ -3,7 +3,7 @@ import {Box, Button, Divider, IconButton, TextField, Typography} from "@mui/mate
 import styled from "@emotion/styled";
 import {useContacts} from "../../hooks/use-contacts";
 import {DEBUG} from "../../utils/constants";
-import {useModal} from "../../hooks/use-modal";
+import {useModal} from "../../hooks/use-context";
 
 const FormContainer = styled(Box)(() => ({
     padding: "20px",

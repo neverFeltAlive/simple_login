@@ -7,7 +7,7 @@ type ModalContextType = {
 }
 
 type ModalProviderProps = {
-    children: JSX.Element
+    children: JSX.Element | JSX.Element[]
 }
 //endregion
 
