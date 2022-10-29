@@ -7,6 +7,9 @@
 `React`
 `TypeScript`
 `MaterialUI`
+`Redux`
+`Firebase`
+`React Router`
 
 ## Описание проекта
 
